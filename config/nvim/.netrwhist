@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/Users/qianyiwang/Develop/qa-test-tool/auto_test'
+let g:netrw_dirhist_2='/Users/qianyiwang/Develop/qa-test-tool/auto_test/VirtualMachine'
+let g:netrw_dirhist_3='/Users/qianyiwang/Develop/qa-test-tool/auto_test'
+let g:netrw_dirhist_4='/Users/qianyiwang/Develop/koa-git'
+let g:netrw_dirhist_5='/Users/qianyiwang/Develop/koa-git/project'
+let g:netrw_dirhist_6='/Users/qianyiwang/Develop/koa-git'
