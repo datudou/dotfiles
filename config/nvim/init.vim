@@ -121,6 +121,11 @@ function! ToggleErrors()
 endfunction
 nnoremap <Leader>sse :call ToggleErrors()<cr>
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+          " >>> gundo config <<< "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <leader>h :GundoToggle<CR>
+
 
 
 
@@ -128,6 +133,7 @@ call plug#begin('~/.vim/plugged')
 " Make sure you use single quotes
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'junegunn/vim-easy-align'
+Plug 'sjl/gundo.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'Syntastic'
@@ -177,10 +183,8 @@ set cursorcolumn
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Use spaces instead of tabs
 set expandtab
-
 " Be smart when using tabs ;)
 set smarttab
-
 " 1 tab == 4 spaces
 set shiftwidth=2
 set tabstop=2
