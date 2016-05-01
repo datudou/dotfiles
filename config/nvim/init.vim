@@ -1,20 +1,39 @@
-let mapleader = " "
-let g:mapleader = " "
+let mapleader = ","
+let g:mapleader = ","
 
 " Fast saving 
-nmap <leader>, :w<cr>
+nmap <leader>s :w<cr>
 "source ~/.vimrc
 nmap  <leader>fer :source ~/.vimrc<cr>
 nmap  <leader>fed  :e ~/.vimrc<cr> 
+"open terminal 
+nmap <leader>'  :terminal<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => NERDTree  config
+            " >>> airline  config <<< "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:airline_powerline_fonts = 1
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+let g:airline_left_sep = '▶'
+let g:airline_left_alt_sep = '❯'
+let g:airline_right_sep = '◀'
+let g:airline_right_alt_sep = '❮'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+" 是否打开tabline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme= 'cool'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+           " >>> NERDTree  config <<< "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Fast opne NERDTree
 nmap <leader>pt :NERDTreeToggle<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Buffer  config
+            " >>> Buffer  config  <<< "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <leader>bn :bn<cr>
 nmap <leader>bp :bp<cr>
@@ -22,9 +41,9 @@ nmap <leader>bl :bl<cr>
 nmap <leader>bf :bf<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => EasyMotion config
+           " >>> EasyMotion config <<< "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" <Leader>f{char} to move to {char}
+"<Leader>f{char} to move to {char}
 map  <Leader>ef <Plug>(easymotion-bd-f)
 nmap <Leader>ef <Plug>(easymotion-overwin-f)
 
@@ -32,22 +51,21 @@ nmap <Leader>ef <Plug>(easymotion-overwin-f)
 "nmap <leader>  <Plug>(easymotion-overwin-f2)
 
 " Move to line
-map <Leader>eL <Plug>(easymotion-bd-jk)
-nmap <Leader>eL <Plug>(easymotion-overwin-line)
+map <Leader>el <Plug>(easymotion-bd-jk)
+nmap <Leader>el <Plug>(easymotion-overwin-line)
 
 " Move to word
 map  <Leader>ew <Plug>(easymotion-bd-w)
 nmap <Leader>ew <Plug>(easymotion-overwin-w)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => YouComleteMe config
+          " >>> YouComleteMe config <<< "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " YCM 补全菜单配色
 " 菜单
 " 选中项
 "highlight PmenuSel ctermfg=2 ctermbg=3 guifg=#AFD700 guibg=#106900
 " 补全功能在注释中同样有效
-" let
 let g:ycm_complete_in_comments=1
 " 允许 vim 加载 .ycm_extra_conf.py 文件，不再提示
 let g:ycm_confirm_extra_conf=0
@@ -64,9 +82,8 @@ let g:ycm_cache_omnifunc=0
 " 语法关键字补全         
 let g:ycm_seed_identifiers_with_syntax=1
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => UltiSnipsEdit config
+            " >>> UltiSnipsEdit config <<< "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:UltiSnipsExpandTrigger="<c-t>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
@@ -74,6 +91,35 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+          " >>> Syntastic config <<< "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_error_symbol='>>'
+let g:syntastic_warning_symbol='>'
+let g:syntastic_check_on_open=1
+let g:syntastic_check_on_wq=0
+let g:syntastic_enable_highlighting=1
+
+let g:syntastic_javascript_checkers = ['eslint']
+highlight SyntasticErrorSign guifg=white guibg=black<Paste>
+let g:syntastic_always_populate_loc_list = 0
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_loc_list_height = 5
+function! ToggleErrors()
+      let old_last_winnr = winnr('$')
+          lclose
+              if old_last_winnr == winnr('$')
+								 " Nothing was closed, open syntastic error location panel
+								 Errors
+              endif
+endfunction
+nnoremap <Leader>sse :call ToggleErrors()<cr>
 
 
 
@@ -89,7 +135,7 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'tpope/vim-surround'
 Plug 'altercation/vim-colors-solarized'
 Plug 'tomasr/molokai'
-Plug 'vim-scripts/phd'
+"Plug 'vim-scripts/phd'
 Plug 'kchmck/vim-coffee-script'
 Plug 'kien/ctrlp.vim'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] } | Plug 'Xuyuanp/nerdtree-git-plugin' "file drawe
@@ -113,10 +159,12 @@ call plug#end()
 
 " Color Theme
 set background=dark
-"colorscheme solarized
+"colorschme solarized
 "colorscheme molokai
 "colorscheme phd
 colorscheme evening
+"colorscheme  eva01
+
 
 
 " Config
@@ -156,19 +204,6 @@ map <leader>tm :tabmove
 " Super useful when editing files in the same directory
 map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 
-" Config for airline
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 2
-let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline#extensions#tabline#right_sep = ' '
-let g:airline#extensions#tabline#right_alt_sep = '|'
-let g:airline_left_sep = ' '
-let g:airline_left_alt_sep = '|'
-let g:airline_right_sep = ' '
-let g:airline_right_alt_sep = '|'
-let g:airline_theme= 'cool'
 
 
 " Auto complete
@@ -202,6 +237,8 @@ nnoremap <silent> <Leader>t t :TagbarToggle<CR>
 
 let g:tern_show_argument_hints = 'on_hold'
 let g:tern_show_signature_in_pum = 1
+
+
 
 
 
