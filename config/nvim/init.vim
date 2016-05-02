@@ -1,6 +1,33 @@
 let mapleader = ","
 let g:mapleader = ","
 
+" 取消备份。 视情况自己改
+set nobackup
+" 关闭交换文件
+set noswapfile
+
+" 复制选中区到系统剪切板中
+vnoremap <leader>y "+y
+
+let g:ackprg = 'ag --vimgrep'
+
+
+" 设置标记一列的背景颜色和数字一行颜色一致
+hi! link SignColumn   LineNr
+hi! link ShowMarksHLl DiffAdd
+hi! link ShowMarksHLu DiffChange
+
+" for error highlight，防止错误整行标红导致看不清
+highlight clear SpellBad
+highlight SpellBad term=standout ctermfg=1 term=underline cterm=underline
+highlight clear SpellCap
+highlight SpellCap term=underline cterm=underline
+highlight clear SpellRare
+highlight SpellRare term=underline cterm=underline
+highlight clear SpellLocal
+highlight SpellLocal term=underline cterm=underline
+
+
 " Fast saving 
 nmap <leader>s :w<cr>
 "source ~/.vimrc
@@ -126,6 +153,18 @@ nnoremap <Leader>sse :call ToggleErrors()<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <leader>h :GundoToggle<CR>
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+          " >>> javascript config <<< "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:javascript_conceal_function   = "ƒ"
+let g:javascript_conceal_null       = "ø"
+let g:javascript_conceal_this       = "@"
+let g:javascript_conceal_return     = "⇚"
+let g:javascript_conceal_undefined  = "¿"
+let g:javascript_conceal_NaN        = "ℕ"
+let g:javascript_conceal_prototype  = "¶"
+let g:javascript_conceal_static     = "•"
+let g:javascript_conceal_super      = "Ω"
 
 
 
@@ -138,11 +177,13 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'Syntastic'
 Plug 'Valloric/YouCompleteMe'
+Plug 'pangloss/vim-javascript'
 Plug 'tpope/vim-surround'
 Plug 'altercation/vim-colors-solarized'
 Plug 'tomasr/molokai'
 "Plug 'vim-scripts/phd'
 Plug 'kchmck/vim-coffee-script'
+Plug 'mileszs/ack.vim'
 Plug 'kien/ctrlp.vim'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] } | Plug 'Xuyuanp/nerdtree-git-plugin' "file drawe
 Plug 'easymotion/vim-easymotion'
