@@ -1,4 +1,3 @@
-let mapleader = ","
 let g:mapleader = ","
 
 " 取消备份。 视情况自己改
@@ -10,6 +9,7 @@ set noswapfile
 vnoremap <leader>y "+y
 
 let g:ackprg = 'ag --vimgrep'
+nnoremap <leader>a :Ag<space>
 
 
 " 设置标记一列的背景颜色和数字一行颜色一致
@@ -36,9 +36,61 @@ nmap  <leader>fed  :e ~/.vimrc<cr>
 "open terminal 
 nmap <leader>'  :terminal<cr>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-            " >>> airline  config <<< "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Config
+set number
+set cursorline
+set cursorcolumn
+
+" Opens a new tab with the current buffer's path
+" Super useful when editing files in the same directory
+map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
+
+" Auto complete
+let g:python_host_prog = '/usr/bin/python'
+
+" tagbar
+nnoremap <silent> <Leader>t t :TagbarToggle<CR>
+
+" 随 vim 自启动
+"let g:indent_guides_enable_on_vim_startup=1
+"" 从第二层开始可视化显示缩进
+"let g:indent_guides_start_level=2
+"" 色块宽度
+"let g:indent_guides_guide_size=1
+"" 快捷键 i 开/关缩进可视化
+"nmap <silent> <Leader>ig <Plug>IndentGuidesToggle
+
+" 显示/隐藏 MiniBufExplorer 窗口
+"map <Leader>bl :MBEToggle<cr>
+" buffer 切换快捷键
+"map <C-Tab> :MBEbn<cr>
+"map <C-S-Tab> :MBEbp<cr>
+
+let g:tern_show_argument_hints = 'on_hold'
+let g:tern_show_signature_in_pum = 1
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+            " >>> JsBeautify  config <<< "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <leader>jsf :call JsBeautify()<cr>
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+            " >>> Tab  config <<< "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Useful mappings for managing tabs
+map <leader>tn :tabnew<cr>
+map <leader>to :tabonly<cr>
+map <leader>tc :tabclose<cr>
+map <leader>tm :tabmove
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+            " >>> Jsx  config <<< "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"let g:jsx_ext_required = 0
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+            " >>> Airline  config <<< "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
@@ -53,23 +105,28 @@ let g:airline_symbols.branch = '⎇'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme= 'cool'
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+           " >>> FUGITIVE  config <<< "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <leader>gs :Gstatus<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
            " >>> NERDTree  config <<< "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Fast opne NERDTree
 nmap <leader>pt :NERDTreeToggle<cr>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
             " >>> Buffer  config  <<< "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <leader>bn :bn<cr>
 nmap <leader>bp :bp<cr>
 nmap <leader>bl :bl<cr>
 nmap <leader>bf :bf<cr>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
            " >>> EasyMotion config <<< "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
 "<Leader>f{char} to move to {char}
 map  <Leader>ef <Plug>(easymotion-bd-f)
 nmap <Leader>ef <Plug>(easymotion-overwin-f)
@@ -85,9 +142,9 @@ nmap <Leader>el <Plug>(easymotion-overwin-line)
 map  <Leader>ew <Plug>(easymotion-bd-w)
 nmap <Leader>ew <Plug>(easymotion-overwin-w)
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
           " >>> YouComleteMe config <<< "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
 " YCM 补全菜单配色
 " 菜单
 " 选中项
@@ -109,9 +166,9 @@ let g:ycm_cache_omnifunc=0
 " 语法关键字补全         
 let g:ycm_seed_identifiers_with_syntax=1
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
             " >>> UltiSnipsEdit config <<< "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:UltiSnipsExpandTrigger="<c-t>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
@@ -120,9 +177,9 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsEditSplit="vertical"
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
           " >>> Syntastic config <<< "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -148,14 +205,14 @@ function! ToggleErrors()
 endfunction
 nnoremap <Leader>sse :call ToggleErrors()<cr>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-          " >>> gundo config <<< "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
+          " >>> Gundo config <<< "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <leader>h :GundoToggle<CR>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
           " >>> javascript config <<< "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:javascript_conceal_function   = "ƒ"
 let g:javascript_conceal_null       = "ø"
 let g:javascript_conceal_this       = "@"
@@ -166,12 +223,43 @@ let g:javascript_conceal_prototype  = "¶"
 let g:javascript_conceal_static     = "•"
 let g:javascript_conceal_super      = "Ω"
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
+          ">>> Text, tab and indent related <<<"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Use spaces instead of tabs
+set expandtab
+" Be smart when using tabs ;)
+set smarttab
+" 1 tab == 4 spaces
+set shiftwidth=2
+set tabstop=2
+" Linebreak on 500 characters
+set lbr
+set tw=500
+set ai "Auto indent
+set si "Smart indent
+set wrap "Wrap lines
 
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
+          ">>> Color theme <<<"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
+set background=dark
+"colorschme solarized
+"colorscheme molokai
+"colorscheme phd
+colorscheme evening
+"colorscheme  eva01
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
+          ">>> Plug List <<<"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin('~/.vim/plugged') 
 " Make sure you use single quotes
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'junegunn/vim-easy-align'
+Plug 'tpope/vim-fugitive'
 Plug 'sjl/gundo.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -183,6 +271,7 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'tomasr/molokai'
 "Plug 'vim-scripts/phd'
 Plug 'kchmck/vim-coffee-script'
+Plug 'scrooloose/nerdcommenter'
 Plug 'mileszs/ack.vim'
 Plug 'kien/ctrlp.vim'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] } | Plug 'Xuyuanp/nerdtree-git-plugin' "file drawe
@@ -201,89 +290,6 @@ Plug 'plasticboy/vim-markdown'
 Plug 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
 Plug 'honza/vim-snippets'
+Plug 'mxw/vim-jsx'
+Plug 'maksimr/vim-jsbeautify'
 call plug#end()
-
-
-" Color Theme
-set background=dark
-"colorschme solarized
-"colorscheme molokai
-"colorscheme phd
-colorscheme evening
-"colorscheme  eva01
-
-
-
-" Config
-set number
-set cursorline
-set cursorcolumn
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Text, tab and indent related
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Use spaces instead of tabs
-set expandtab
-" Be smart when using tabs ;)
-set smarttab
-" 1 tab == 4 spaces
-set shiftwidth=2
-set tabstop=2
-
-
-" Linebreak on 500 characters
-set lbr
-set tw=500
-
-set ai "Auto indent
-set si "Smart indent
-set wrap "Wrap lines
-
-" Useful mappings for managing tabs
-map <leader>tn :tabnew<cr>
-map <leader>to :tabonly<cr>
-map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove
-
-" Opens a new tab with the current buffer's path
-" Super useful when editing files in the same directory
-map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
-
-
-
-" Auto complete
-let g:python_host_prog = '/usr/bin/python'
-
-
-
-
-
-" tagbar
-nnoremap <silent> <Leader>t t :TagbarToggle<CR>
-
-
-
-
-" 随 vim 自启动
-"let g:indent_guides_enable_on_vim_startup=1
-"" 从第二层开始可视化显示缩进
-"let g:indent_guides_start_level=2
-"" 色块宽度
-"let g:indent_guides_guide_size=1
-"" 快捷键 i 开/关缩进可视化
-"nmap <silent> <Leader>ig <Plug>IndentGuidesToggle
-
-" 显示/隐藏 MiniBufExplorer 窗口
-"map <Leader>bl :MBEToggle<cr>
-" buffer 切换快捷键
-"map <C-Tab> :MBEbn<cr>
-"map <C-S-Tab> :MBEbp<cr>
-
-
-let g:tern_show_argument_hints = 'on_hold'
-let g:tern_show_signature_in_pum = 1
-
-
-
-
-
