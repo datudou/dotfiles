@@ -292,4 +292,7 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'mxw/vim-jsx'
 Plug 'maksimr/vim-jsbeautify'
+Plug 'tomlion/vim-solidity'
+Plug 'tpope/vim-rails'
+Plug 'vim-ruby/vim-ruby'
 call plug#end()
